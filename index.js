@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
 
+const categoriesController = require('./categories/categoriesController');
+const articlesController = require('./articles/articlesController');
+
 //Configuração do express para arquivos estáticos
 app.use(express.static('public'));
 
@@ -22,6 +25,9 @@ connection
   .catch((err) => {
     console.log(err.message);
   });
+
+app.use("/", categoriesController);
+app.use("/", articlesController);
 
 app.get('/', (req, res) => {
   res.send('Bem-vindo ao meu site!');
