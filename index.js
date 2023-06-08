@@ -6,6 +6,9 @@ const connection = require('./database/database');
 const categoriesController = require('./categories/categoriesController');
 const articlesController = require('./articles/articlesController');
 
+const Article = require('./articles/Article');
+const Category = require('./categories/Category');
+
 //Configuração do express para arquivos estáticos
 app.use(express.static('public'));
 
@@ -26,8 +29,8 @@ connection
     console.log(err.message);
   });
 
-app.use("/", categoriesController);
-app.use("/", articlesController);
+app.use('/', categoriesController);
+app.use('/', articlesController);
 
 app.get('/', (req, res) => {
   res.send('Bem-vindo ao meu site!');
